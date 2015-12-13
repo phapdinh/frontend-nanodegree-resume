@@ -11,7 +11,7 @@ $("#header").prepend(formattedName);
 
 var skills = ["javascript","python","Linux","HTML","CSS"];
 
-var bio = {"name":"Phap",
+var bio = {"name":"Phap Dinh",
 "role":"web developer",
 "contacts":{
 	"email":"centralparkloop@yahoo.com",
@@ -50,21 +50,56 @@ work[1].employer = "Pacific Gas and Electric";
 work[1].years = 0.3;
 work[1].city = "San Francisco";
 work[1].description = "Helped perform system impact study reports";
-for (index in work){
-	$("#workExperience").append(HTMLworkStart);
-	var formattedTitle = HTMLworkTitle.replace("%data%",work[index].position);
-	var formattedEmployer = HTMLworkEmployer.replace("%data%",work[index].employer);
-	$(".work-entry:last").append(formattedEmployer + formattedTitle);
-	var formattedDate = HTMLworkDates.replace("%data%",work[index].years);
-	$(".work-entry:last").append(formattedDate);
-	var formattedLocation = HTMLworkLocation.replace("%data%",work[index].city);
-	$(".work-entry:last").append(formattedLocation);
-	var formattedDescription = HTMLworkDescription.replace("%data%",work[index].description);
-	$(".work-entry:last").append(formattedDescription);
+
+var projects = {"projects":[]};
+
+projects.display = function() {
+	for(project in projects.projects) {
+		$("#projects").append(HTMLprojectStart);
+		$(".project-entry:last").append(HTMLprojectTitle.replace("%data%",projects[project].title));
+		$(".project-entry:last").append(HTMLprojectDates.replace("%data%",projects[project].dates));	
+		$(".project-entry:last").append(HTMLprojectDescription.replace("%data%",projects[project].description));
+		if(projects[project].images.length > 0) {
+			for( image in projects[project].images) {
+				$(".project-entry:last").append(HTMLprojectImage.replace("%data%",projects[project].images[image]));
+			}
+		}
+	}
 }
+
+function displayWork() {
+	for (index in work){
+		$("#workExperience").append(HTMLworkStart);
+		var formattedTitle = HTMLworkTitle.replace("%data%",work[index].position);
+		var formattedEmployer = HTMLworkEmployer.replace("%data%",work[index].employer);
+		$(".work-entry:last").append(formattedEmployer + formattedTitle);
+		var formattedDate = HTMLworkDates.replace("%data%",work[index].years);
+		$(".work-entry:last").append(formattedDate);
+		var formattedLocation = HTMLworkLocation.replace("%data%",work[index].city);
+		$(".work-entry:last").append(formattedLocation);
+		var formattedDescription = HTMLworkDescription.replace("%data%",work[index].description);
+		$(".work-entry:last").append(formattedDescription);
+	}
+}
+
+displayWork();
 
 var education = {};
 
 education["name"] = "Georgia Institute of Technology";
 education["years"] = 3;
 education["city"] = "Atlanta";
+
+$("#main").append(internationalizeButton);
+
+function inName(name) {
+	var twoNames = name.trim().split(" ");
+	var firstName = twoNames[0].slice(0,1).toUpperCase() + twoNames[0].slice(1).toLowerCase();
+	twoNames[0] = firstName;
+	var lastName = twoNames[1].toUpperCase();
+	twoNames[1] = lastName;
+	var internationalizedName = twoNames.join(" ");
+	return internationalizedName;
+}
+
+$("#mapDiv").append(googleMap);
