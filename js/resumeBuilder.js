@@ -27,7 +27,7 @@ var bio = {
 		var formattedMobile = HTMLmobile.replace("%data%",this.contacts.mobile);
 		var formattedEmail = HTMLemail.replace("%data%",this.contacts.email);
 		var formattedGithub = HTMLgithub.replace("%data%",this.contacts.github);
-		var formattedLocation = HTMLlocation.replace("%data%",this.contacts.location)
+		var formattedLocation = HTMLlocation.replace("%data%",this.contacts.location);
 		$("#header").append(formattedBioPic);
 		$("#header").append(formattedWelcomeMsg);
 		$("#topContacts").append(formattedMobile);
@@ -124,7 +124,7 @@ var education = {
 			var formattedTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[index].title);
 			var formattedSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[index].school);
 			$("#education").append(formattedTitle + formattedSchool);
-			var formattedDate = HTMLonlineDates.replace("%data%",education.onlineCourses[index].date)
+			var formattedDate = HTMLonlineDates.replace("%data%",education.onlineCourses[index].date);
 			$("#education").append(formattedDate);
 			var formattedURL = HTMLonlineURL.replace("%data%",education.onlineCourses[index].url);
 			$("#education").append(formattedURL);
