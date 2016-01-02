@@ -2,8 +2,8 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
  
-var name = "Phap Dinh";
-var formattedName = HTMLheaderName.replace("%data%",name);
+var nameHeader = "Phap Dinh";
+var formattedName = HTMLheaderName.replace("%data%",nameHeader);
 var formattedRole = HTMLheaderRole.replace("%data%","web developer");
 
 $("#header").prepend(formattedRole);
@@ -35,9 +35,9 @@ var bio = {
 		$("#topContacts").append(formattedGithub);
 		$("#topContacts").append(formattedLocation);
 
-		if(this.skills.length != 0) {
+		if(this.skills.length !== 0) {
 			$("#header").append(HTMLskillsStart); 
-			for(var i = 0; i < this.skills.length; i = i + 1) {
+			for(var i = 0; i < this.skills.length; i++) {
 				$("#skills").append(HTMLskills.replace("%data%",this.skills[i]));
 			}
 		}
@@ -65,7 +65,7 @@ var work = {
 	],
 	"display": function() {
 		$("#workExperience").append(HTMLworkStart);
-		for (index in this.jobs){
+		for (var index = 0; index < this.jobs.length; index++){
 			var formattedTitle = HTMLworkTitle.replace("%data%",work.jobs[index].title);
 			var formattedEmployer = HTMLworkEmployer.replace("%data%",work.jobs[index].employer);
 			$(".work-entry:last").append(formattedEmployer + formattedTitle);
@@ -108,7 +108,7 @@ var education = {
 	],
 	"display": function() {
 		$("#education").append(HTMLschoolStart);
-		for(index in this.schools){
+		for(var index = 0; index < this.schools.length; index++){
 			var formattedName = HTMLschoolName.replace("%data%",education.schools[index].name);
 			var formattedDegree = HTMLschoolDegree.replace("%data%",education.schools[index].degree);
 			$(".education-entry:last").append(formattedName + formattedDegree);
@@ -120,7 +120,7 @@ var education = {
 			$(".education-entry:last").append(formattedMajor);
 		}
 		$("#education").append(HTMLonlineClasses);
-		for(index in this.onlineCourses) {
+		for(index = 0; index < this.onlineCourses.length; index++) {
 			var formattedTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[index].title);
 			var formattedSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[index].school);
 			$("#education").append(formattedTitle + formattedSchool);
@@ -139,26 +139,26 @@ var projects = {
 		{
 			"title": "Catalog",
 			"dates": 2015,
-			"description": "Developed a content management system using the Flask framework in Python. \
-				Authentication is provided via OAuth and all data is stored within a PostgreSQL database. The system allows you \
-				to create categories and put items in those categories with a description of that item.",
+			"description": 'Developed a content management system using the Flask framework in Python.' +
+				'Authentication is provided via OAuth and all data is stored within a PostgreSQL database. The system allows you' +
+				'to create categories and put items in those categories with a description of that item.',
 			"images": ['images/catalogPic.GIF'] 
 		}
 	],
 	"display": function() {
 		$("#projects").append(HTMLprojectStart);
-		for(index in this.projects) {
+		for(var index = 0; index < this.projects.length; index++) {
 			$(".project-entry:last").append(HTMLprojectTitle.replace("%data%",this.projects[index].title));
 			$(".project-entry:last").append(HTMLprojectDates.replace("%data%",this.projects[index].dates));	
 			$(".project-entry:last").append(HTMLprojectDescription.replace("%data%",this.projects[index].description));
 			if(this.projects[index].images.length > 0) {
-				for( image in this.projects[index].images) {
-					$(".project-entry:last").append(HTMLprojectImage.replace("%data%",this.projects[index].images[image]));
+				for(var i = 0; i < this.projects[index].images.length; i++) {
+					$(".project-entry:last").append(HTMLprojectImage.replace("%data%",this.projects[index].images[i]));
 				}
 			}
 		}
 	}
-}
+};
 
 projects.display();
 
