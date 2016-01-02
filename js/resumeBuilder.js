@@ -1,13 +1,6 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
- 
-var nameHeader = "Phap Dinh";
-var formattedName = HTMLheaderName.replace("%data%",nameHeader);
-var formattedRole = HTMLheaderRole.replace("%data%","web developer");
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
 
 var bio = {
 	"name":"Phap Dinh",
@@ -22,18 +15,26 @@ var bio = {
 	"skills":["Javascript","Python","Linux","HTML","CSS"],
 	"biopic":"https://scontent-atl3-1.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/p160x160/10544381_10152714453108115_2266025225592810459_n.jpg?oh=d673df7e1acc263b4a33e329883a76ca&oe=56E79C1B",
 	"display": function() {
+		var nameHeader = "Phap Dinh";
+		var formattedName = HTMLheaderName.replace("%data%",nameHeader);
+		var formattedRole = HTMLheaderRole.replace("%data%","web developer");
+		$("#header").prepend(formattedRole);
+		$("#header").prepend(formattedName);
 		var formattedBioPic = HTMLbioPic.replace("%data%",this.biopic);
 		var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%",this.welcomeMessage);
 		var formattedMobile = HTMLmobile.replace("%data%",this.contacts.mobile);
 		var formattedEmail = HTMLemail.replace("%data%",this.contacts.email);
 		var formattedGithub = HTMLgithub.replace("%data%",this.contacts.github);
 		var formattedLocation = HTMLlocation.replace("%data%",this.contacts.location);
-		$("#header").append(formattedBioPic);
-		$("#header").append(formattedWelcomeMsg);
+		$("#header").append(formattedBioPic).append(formattedWelcomeMsg);
 		$("#topContacts").append(formattedMobile);
 		$("#topContacts").append(formattedEmail);
 		$("#topContacts").append(formattedGithub);
 		$("#topContacts").append(formattedLocation);
+		$("#footerContacts").append(formattedMobile);
+		$("#footerContacts").append(formattedEmail);
+		$("#footerContacts").append(formattedGithub);
+		$("#footerContacts").append(formattedLocation);
 
 		if(this.skills.length !== 0) {
 			$("#header").append(HTMLskillsStart); 
@@ -87,7 +88,7 @@ var education = {
 			"name": "Morrow High School",
 			"location": "Morrow",
 			"degree": "High School Diploma",
-			"majors": "AP",
+			"majors": ["AP"],
 			"dates": 2008,
 			"url": ""
 		},
@@ -95,7 +96,7 @@ var education = {
 			"name": "Georgia Institute of Technology",
 			"location": "Atlanta",
 			"degree": "Some College",
-			"majors": "Electrical Engineering",
+			"majors": ["Electrical Engineering"],
 			"dates": 2011,
 			"url": ""
 		}
@@ -118,8 +119,10 @@ var education = {
 			$(".education-entry:last").append(formattedLocation);
 			var formattedDates = HTMLschoolDates.replace("%data%",education.schools[index].dates);
 			$(".education-entry:last").append(formattedDates);
-			var formattedMajor = HTMLschoolMajor.replace("%data%",education.schools[index].majors);
-			$(".education-entry:last").append(formattedMajor);
+			for(var majorIndex = 0; majorIndex < education.schools[index].majors.length; majorIndex++) {
+				var formattedMajor = HTMLschoolMajor.replace("%data%",education.schools[index].majors[majorIndex]);
+				$(".education-entry:last").append(formattedMajor);
+			}
 		}
 		$("#education").append(HTMLonlineClasses);
 		for(index = 0; index < this.onlineCourses.length; index++) {
