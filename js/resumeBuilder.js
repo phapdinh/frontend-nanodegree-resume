@@ -88,14 +88,16 @@ var education = {
 			"location": "Morrow",
 			"degree": "High School Diploma",
 			"majors": "AP",
-			"dates": 2008
+			"dates": 2008,
+			"url": ""
 		},
 		{
 			"name": "Georgia Institute of Technology",
 			"location": "Atlanta",
 			"degree": "Some College",
 			"majors": "Electrical Engineering",
-			"dates": 2011
+			"dates": 2011,
+			"url": ""
 		}
 	],
 	"onlineCourses": [
